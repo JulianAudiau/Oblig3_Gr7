@@ -164,13 +164,16 @@ public class LenketMengde <T> implements MengdeADT<T> {
     }
 
     @Override
-    public void leggTilAlleFra(MengdeADT <T> annenMengde) {
-
-        T [] elements = annenMengde.toTabell();
-        for (T element : elements) {
-            leggTil(element);
+    public void leggTilAlleFra(MengdeADT<T> annenMengde) {
+        if (annenMengde instanceof LenketMengde<T> annen) {
+            Node<T> current = annen.head;
+            while (current != null) {
+                leggTil(current.data);
+                current = current.next;
+            }
         }
     }
+
 
     @Override
     public T fjern(T element) {
